@@ -34,15 +34,10 @@ protected:
 
 public:
     // Conversion operator to Type. Calls the getter member function.
-    explicit operator Type() const {
-        return (m_owner->*m_getter)();
-    }
+    explicit operator Type();
 
     // Assignment operator. Calls the setter member function.
-    Property& operator =(Type data) {
-        (m_owner->*m_setter)(data);
-        return *this;
-    }
+    Property& operator =(Type data);
 
     // Default constructor. Initializes all member variables to 0.
     Property() : m_owner(0),
@@ -57,15 +52,10 @@ public:
     }
 
     // Initializes all member variables with the provided arguments.
-    void init(Owner* const owner, getter getmethod, setter setmethod) {
-        m_owner = owner;
-        m_getter = getmethod;
-        m_setter = setmethod;
-    }
+    void init(Owner* const owner, getter getmethod, setter setmethod);
 };
 
 // Other specializations of the Property class template would go here...
-
 
 template<typename Type, typename Owner>
 class Property<Type, Owner, ReadOnly>{
@@ -76,9 +66,7 @@ protected:
     getter m_getter;
 
 public:
-    explicit operator Type() {
-        return (m_owner->*m_getter)();
-    }
+    explicit operator Type();
 
 
     Property() : m_owner(0),
@@ -89,10 +77,7 @@ public:
                                                      m_getter(getmethod) {
     }
 
-    void init(Owner* const owner, getter getmethod) {
-        m_owner = owner;
-        m_getter = getmethod;
-    }
+    void init(Owner* const owner, getter getmethod);
 };
 
 
@@ -105,10 +90,7 @@ protected:
     setter m_setter;
 
 public:
-    Property& operator =(Type data) {
-        (m_owner->*m_setter)(data);
-        return *this;
-    }
+    Property& operator =(Type data);
 
     Property() : m_owner(0),
                  m_setter(0) {
@@ -118,10 +100,7 @@ public:
                                                      m_setter(setmethod) {
     }
 
-    void init(Owner* const owner, setter setmethod) {
-        m_owner = owner;
-        m_setter = setmethod;
-    }
+    void init(Owner* const owner, setter setmethod);
 };
 
 #endif //PROPERTY_HPP
