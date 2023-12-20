@@ -34,7 +34,7 @@ protected:
 
 public:
     // Conversion operator to Type. Calls the getter member function.
-    explicit operator Type();
+    operator Type();
 
     // Assignment operator. Calls the setter member function.
     Property& operator =(Type data);
@@ -66,7 +66,7 @@ protected:
     getter m_getter;
 
 public:
-    explicit operator Type();
+    operator Type();
 
 
     Property() : m_owner(0),
